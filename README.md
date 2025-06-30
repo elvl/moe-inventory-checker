@@ -1,6 +1,10 @@
 # moe-inventory-checker
 MoE のログファイルからメモリーズボックスの枠拡張のログを収集して html に出力します。
 
+[moe-inventory-checker-go](https://github.com/elvl/moe-inventory-checker-go/) 
+実行ファイル作るのに Go 版に移植しました。特にこだわりがなければそちらをお使いください。UTF-16LE (BOM 付き) の mlogw から始まるログファイルへの対応は Go 版でやってます。
+
+
 ## Options
 
 * `--path` userdata フォルダのパス。出力もここにされます。 (default: "C:/MOE/Master of Epic/userdata") フォルダが見つからない場合、レジストリから MoE のインストール先を探します。

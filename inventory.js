@@ -119,7 +119,7 @@ const readLogfile = async (entry) => {
     .filter(dirent => {
       const m = dirent.name.match(logFileRegex)
       if (m) {
-        dirent.date = new Date('20' + m[1], m[2], m[3])
+        dirent.date = new Date('20' + m[1], m[2] - 1, m[3])
         return dirent.date >= memoriesboxPatchDate
       }
     })
@@ -161,6 +161,14 @@ const readLogfile = async (entry) => {
   }
 }
 
+const formatDate = (date) => {
+  if (!date) return ''
+  const y = date.getFullYear()
+  const m = String(date.getMonth() + 1).padStart(2, '0')
+  const d = String(date.getDate()).padStart(2, '0')
+  return `${y}-${m}-${d}`
+}
+
 const makeTemplateContext = (charaList) => {
   const context = []
 
@@ -181,8 +189,8 @@ const makeTemplateContext = (charaList) => {
       }
 
       chara.push([
-        entry.inventory.updated?.toISOString().slice(0,10), 
-        entry.bank.updated?.toISOString().slice(0,10)
+        formatDate(entry.inventory.updated),
+        formatDate(entry.bank.updated)
       ].join('\n'))
     }
   }
